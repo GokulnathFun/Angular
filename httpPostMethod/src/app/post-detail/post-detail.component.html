@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Post</h1>
+            <form  [formGroup]="register" (ngSubmit)="onSubmit()" >
+                <div class="row" >
+                    <div class="col-md-5">
+                        <label>FirstName :</label>
+                        <input type="text" formControlName="firstName" class="form-control" required/> 
+                        <br>
+                        <label>LastName</label>
+                        <input type="text" formControlName="lastName" class="form-control" required/> 
+                        <label>Age</label>
+                        <input type="number" formControlName="age" class="form-control" required/> 
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+
+</html>
