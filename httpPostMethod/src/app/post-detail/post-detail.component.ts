@@ -30,22 +30,11 @@ export class PostDetailComponent implements OnInit {
   }
 
   onSubmit() {
+    this.data = JSON.stringify(this.register.value);
+    //console.log(this.data.textcontent);
     
-    //formGroup creates instances, which can't be converted to JSON. For that..
-    //creating JSON structure with variable(data, access formControl values from it)..
-    this.data = {
-      "firstName": this.register.get('firstName').value,
-      "lastName": this.register.get('lastName').value,
-      "age": this.register.get('age').value
-    }
-    
-    //Now convert the 'data' to json string with adding of textcontent..
-    //textcontent gives the strings of every data present in 'data'...
-    this.data.textcontent = JSON.stringify(this.data);
-    console.log(this.data.textcontent);
-    
-    //Now post the textcontent in 'data'. It can be accessed as Json in backed.
-    this.httpClient.post("http://localhost/Angular/php/post_detail.php", this.data.textcontent)
+    //Now post the 'data'. It can be accessed as Json in backed.
+    this.httpClient.post("http://localhost/Angular/php/post_detail.php", this.data)
     .subscribe(
           (val) => {
               console.log("POST call successful value returned in body.", 
@@ -59,23 +48,4 @@ export class PostDetailComponent implements OnInit {
           });
   }
 
-  // this.http.post("/courses/-KgVwECOnlc-LHb_B0cQ.json",
-  // {
-  //     "courseListIcon": "...",
-  //     "description": "TEST",
-  //     "iconUrl": "..",
-  //     "longDescription": "...",
-  //     "url": "new-url"
-  // })
-  // .subscribe(
-  //     (val) => {
-  //         console.log("POST call successful value returned in body", 
-  //                     val);
-  //     },
-  //     response => {
-  //         console.log("POST call in error", response);
-  //     },
-  //     () => {
-  //         console.log("The POST observable is now completed.");
-  //     });
 }
